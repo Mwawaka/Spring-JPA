@@ -1,16 +1,16 @@
 package Spring.JPA.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 public class CourseMaterial {
 
     @Id
@@ -18,5 +18,11 @@ public class CourseMaterial {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "course_material_sequence")
     private Long courseMaterialId;
 
+    @Column(name="course_url")
     private String url;
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id",referencedColumnName = "courseId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
+    private Course course;
 }

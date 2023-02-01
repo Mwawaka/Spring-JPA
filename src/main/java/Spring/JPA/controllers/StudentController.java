@@ -1,6 +1,8 @@
 package Spring.JPA.controllers;
 
+import Spring.JPA.entities.CourseMaterial;
 import Spring.JPA.entities.Student;
+import Spring.JPA.services.CourseMaterialService;
 import Spring.JPA.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,4 +48,5 @@ public class StudentController {
 
      return "Has been successfully updated with int response" + studentService.updateStudentName(firstname,emailId);
     }
+
 }
